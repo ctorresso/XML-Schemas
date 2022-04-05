@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.prueba.es/catalogo_libros"
+			elementFormDefault="qualified"
+			attributeFormDefault="qualified"
+			xmlns:cat="http://www.porueba.es/catalogo_libros">
+			
+
+	<!-- ======================================== -->
+	<!-- 	Definiciones de tipos simples	    -->
+	<!--========================================-->
+	
+	<!-- ========== Tipo "tipoMes" ============ -->
+	<xsd:simpleType name="tipoMes">
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="12"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<!-- ========== Tipo "tipoAnyo" ========== -->
+	<xsd:simpleType name="tipoAnyo">
+		<xsd:restriction base="xsd:positiveInteger">
+			<xsd:minInclusive value="1900"/>
+			<xsd:maxInclusive value="2011"/>			
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<!-- ========== Tipo "tipoNombre" ========== -->
+	<xsd:simpleType name="tipoNombre">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0"/>
+			<xsd:maxLength value="100"/>			
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<!-- ========== Tipo "tipoISBN" ========== -->
+	<xsd:simpleType name="tipoISBN">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="13"/>
+			<xsd:maxLength value="17"/>			
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<!-- =================================================== -->
+	<!-- Definiciones de otros elementos de tipos simples -->
+	<!-- =================================================== -->
+	<xsd:element name="titulo" type="cat:tipoNombre"/>
+	<xsd:element name="autor" type="cat:tipoNombre"/>
+	<xsd:element name="mes" type="cat:tipoMes"/>
+	<xsd:element name="anyo" type="cat:tipoAnyo"/>
+	<xsd:element name="ISBN" type="cat:tipoISBN"/>
+	<xsd:element name="editor" type="cat:tipoNombre"/>
+
+	
+	<!-- ========================================== -->
+	<!-- Definiciones de elementos de tipo complejo -->
+	<!-- ========================================== -->
+	
+	<!-- ========== Elemento "fecha" ========== -->
+	<xsd:element name="fecha">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="cat:mes" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="cat:anyo"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<!-- ========== Elemento "libro" ========== -->
+	<xsd:element name="libro">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="cat:titulo" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="cat:autor" maxOccurs="unbounded"/>
+				<xsd:element ref="cat:fecha"/>
+				<xsd:element ref="cat:ISBN"/>
+				<xsd:element ref="cat:editor"/>
+			</xsd:sequence>
+		<xsd:attribute name="categoria" use="required">
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="autobiografia"/>
+					<xsd:enumeration value="noficcion"/>
+					<xsd:enumeration value="ficcion"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="enstock" type="xsd:boolean" default="false"/>
+		<xsd:attribute name="revisor" type="xsd:string" default=""/>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<!-- ========== Elemento "catalogoLibros" ========== -->	
+	<xsd:element name="catalogoLibros">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="cat:libro" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>	
+</xsd:schema>

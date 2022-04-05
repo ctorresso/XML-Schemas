@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<cat:catalogoLibros xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xsi:noNamespaceSchemaLocation="XMLSchema_CatalogoLibros.xsd">
+
+	<cat:libro cat:categoria="ficcion" cat:enstock="true">
+		<cat:titulo>Los hombres que no amaban a las mujeres</cat:titulo>
+		<cat:autor>Stieg Larsson</cat:autor>
+		<cat:fecha>
+			<cat:anyo>2008</cat:anyo>
+		</cat:fecha>
+		<cat:ISBN>978-84-233-4044-6</cat:ISBN>
+		<cat:editor>Destino</cat:editor>
+	</cat:libro>
+
+	<cat:libro cat:categoria="noficcion" cat:revisor="Luis Rodrigo">
+		<cat:titulo>Java a través de ejemplos</cat:titulo>
+		<cat:autor>Jesús Bobadilla</cat:autor>
+		<cat:autor>Adela Sancho</cat:autor>
+		<cat:fecha>
+			<cat:mes>1</cat:mes>
+			<cat:anyo>2003</cat:anyo>
+		</cat:fecha>
+		<cat:ISBN>84-7897-549-7</cat:ISBN>
+		<cat:editor>Ra-Ma</cat:editor>
+	</cat:libro>
+
+</cat:catalogoLibros>
